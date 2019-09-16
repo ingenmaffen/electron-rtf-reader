@@ -1,0 +1,20 @@
+{
+    "name": "electron-rtf-reader",
+    "version": "0.1.0",
+    "description": "An electron based .rtf reader",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "watch": "nodemon --exec npm start"
+    },
+    "repository": "",
+    "author": "Robert Rabi",
+    "license": "MIT",
+    "dependencies": {
+        "rtf.js": "2.3.2"
+    },
+    "devDependencies": {
+        "electron": "6.0.4",
+        "nodemon": "1.19.1"
+    }
+}

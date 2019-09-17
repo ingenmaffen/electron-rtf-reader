@@ -2,13 +2,15 @@
     "name": "electron-rtf-reader",
     "version": "1.0.0",
     "description": "An electron based .rtf reader",
+    "homepage": "https://github.com/ingenmaffen/electron-rtf-reader",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "watch": "nodemon --exec npm start"
+        "watch": "nodemon --exec npm start",
+        "build": "electron-builder build"
     },
     "repository": "",
-    "author": "Robert Rabi",
+    "author": "Robert Rabi <ingenmaffen@gmail.com>",
     "license": "MIT",
     "dependencies": {
         "rtf.js": "2.3.2",
@@ -17,6 +19,17 @@
     },
     "devDependencies": {
         "electron": "6.0.4",
-        "nodemon": "1.19.1"
+        "nodemon": "1.19.1",
+        "electron-builder": "21.2.0"
+    },
+    "build": {
+        "appId": "electron-rtf-reader",
+        "linux": {
+            "target": ["deb"]
+        },
+        "win": {
+            "target": ["portable"],
+            "icon": "favicon.png"
+        }
     }
 }

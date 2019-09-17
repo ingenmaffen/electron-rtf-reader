@@ -18,8 +18,10 @@ const mainMenu = Menu.buildFromTemplate([
                         }
                         
                     }, filepath => {
-                        mainWindow.webContents.send('path', filepath.toString());
-                        fs.writeFile(userPath + '/filepath', filepath.toString(), () => {});
+                        if (filepath && filepath.length) { 
+                            mainWindow.webContents.send('path', filepath.toString());
+                            fs.writeFile(userPath + '/filepath', filepath.toString(), () => {});
+                        }
                     });
                 }
             },
@@ -54,7 +56,7 @@ function createWindow() {
     mainWindow.loadFile('index.html');
     mainWindow.webContents.on('did-finish-load', () => {
         fs.readFile(userPath + '/filepath', (err, data) => {
-            mainWindow.webContents.send('path', data.toString());
+            if (data) mainWindow.webContents.send('path', data.toString());
         });
     }); 
 

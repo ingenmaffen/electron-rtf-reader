@@ -1,6 +1,6 @@
 {
     "name": "electron-rtf-reader",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "An electron based .rtf reader",
     "homepage": "https://github.com/ingenmaffen/electron-rtf-reader",
     "main": "main.js",
@@ -25,11 +25,13 @@
     "build": {
         "appId": "electron-rtf-reader",
         "linux": {
-            "target": ["deb"]
+            "target": [
+                "deb"
+            ]
         },
         "win": {
-            "target": ["portable"],
-            "icon": "favicon.png"
+            "target": "portable",
+            "icon": "icon.png"
         }
     }
 }

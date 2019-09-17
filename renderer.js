@@ -6,6 +6,10 @@ ipcRenderer.on('path', function(_event, message) {
     readFile(message)
 });
 
+ipcRenderer.on('search', function(_event, message) {
+    findText(message)
+});
+
 
 function readFile(path) {
     fs.readFile(path, 'utf-8', (err, data) => {
@@ -25,4 +29,8 @@ function onFileParse(_metaData, html) {
     const contentDiv = document.getElementById('content');
     contentDiv.innerHTML = "";
     contentDiv.insertAdjacentHTML( 'beforeend', html );
+}
+
+function findText(text) {
+    window.find(text);
 }

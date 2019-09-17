@@ -1,0 +1,16 @@
+<html>
+    <head></head>
+    <body>
+        <form style="text-align: center" onsubmit="search()">
+            <input id="searchInput" placeholder="Search" autofocus/></br>
+            <button style="margin-top: 20px">Search</button>
+        </form>
+        <script>
+            function search() {
+                const ipcRenderer = require('electron').ipcRenderer;
+                const input = document.getElementById('searchInput');
+                ipcRenderer.send('search', input.value)
+            }
+        </script>
+    </body>
+</html>

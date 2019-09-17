@@ -1,4 +1,7 @@
 const { app, BrowserWindow, Menu, dialog } = require('electron');
+const fs = require('fs');
+
+const userPath = app.getPath('userData');
 
 const mainMenu = Menu.buildFromTemplate([
     {
@@ -15,9 +18,9 @@ const mainMenu = Menu.buildFromTemplate([
                         }
                         
                     }, filepath => {
-                        // TODO: give path to renderer and save cookies
-                        mainWindow.webContents.send('path', filepath.toString())
-                    })
+                        mainWindow.webContents.send('path', filepath.toString());
+                        fs.writeFile(userPath + '/filepath', filepath.toString(), () => {});
+                    });
                 }
             },
             {
@@ -42,7 +45,11 @@ function createWindow() {
 
     Menu.setApplicationMenu(mainMenu);
 
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.on('did-finish-load', () => {
+        fs.readFile(userPath + '/filepath', (err, data) => {
+            mainWindow.webContents.send('path', data.toString());
+        })
+    });
    
 }
 

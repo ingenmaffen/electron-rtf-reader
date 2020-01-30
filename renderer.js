@@ -1,6 +1,7 @@
 const rtfReader = require("./rtf-import");
 const fs = require("fs");
-const { ipcRenderer, session } = require("electron");
+const { ipcRenderer } = require("electron");
+const { Book } = require("epubjs");
 
 ipcRenderer.on("path", function(_event, message) {
   readFile(message);
@@ -21,6 +22,29 @@ ipcRenderer.on("theme", function(_event, message) {
 });
 
 function readFile(path) {
+  const splittedPath = path.split(".");
+  const extension = splittedPath[splittedPath.length - 1];
+  switch (extension) {
+    case "rtf":
+      readRtf(path);
+      break;
+    case "epub":
+      readEpub(path);
+      break;
+  }
+}
+
+function readEpub(path) {
+  const book = new Book(path);
+  const renderedBook = book.renderTo("content", {
+    width: "100%",
+    height: "100%",
+    flow: "auto"
+  });
+  renderedBook.display();
+}
+
+function readRtf(path) {
   fs.readFile(path, "utf-8", (err, data) => {
     if (err) {
       alert("An error ocurred reading the file :" + err.message);

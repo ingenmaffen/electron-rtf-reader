@@ -1,37 +1,38 @@
 {
-    "name": "electron-rtf-reader",
-    "version": "1.0.1",
-    "description": "An electron based .rtf reader",
-    "homepage": "https://github.com/ingenmaffen/electron-rtf-reader",
-    "main": "main.js",
-    "scripts": {
-        "start": "electron .",
-        "watch": "nodemon --exec npm start",
-        "build": "electron-builder build"
+  "name": "electron-rtf-reader",
+  "version": "1.0.1",
+  "description": "An electron based .rtf reader",
+  "homepage": "https://github.com/ingenmaffen/electron-rtf-reader",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "watch": "nodemon --exec npm start",
+    "build": "electron-builder build"
+  },
+  "repository": "",
+  "author": "Robert Rabi <ingenmaffen@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "epubjs": "0.3.85",
+    "rtf.js": "2.3.2",
+    "jquery": "3.4.1",
+    "jsdom": "15.1.1"
+  },
+  "devDependencies": {
+    "electron": "6.0.4",
+    "nodemon": "1.19.1",
+    "electron-builder": "21.2.0"
+  },
+  "build": {
+    "appId": "electron-rtf-reader",
+    "linux": {
+      "target": [
+        "deb"
+      ]
     },
-    "repository": "",
-    "author": "Robert Rabi <ingenmaffen@gmail.com>",
-    "license": "MIT",
-    "dependencies": {
-        "rtf.js": "2.3.2",
-        "jquery": "3.4.1",
-        "jsdom": "15.1.1"
-    },
-    "devDependencies": {
-        "electron": "6.0.4",
-        "nodemon": "1.19.1",
-        "electron-builder": "21.2.0"
-    },
-    "build": {
-        "appId": "electron-rtf-reader",
-        "linux": {
-            "target": [
-                "deb"
-            ]
-        },
-        "win": {
-            "target": "portable",
-            "icon": "icon.png"
-        }
+    "win": {
+      "target": "portable",
+      "icon": "icon.png"
     }
+  }
 }
